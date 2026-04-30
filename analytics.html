@@ -4,236 +4,245 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SmartExpense — Analytics</title>
-  <link rel="stylesheet" href="main.css" />
-  <link rel="stylesheet" href="dashboard.css" />
-  <link rel="stylesheet" href="darkmode.css" />
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="darkmode.css">
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="brand-row"><h2>SmartExpense</h2><small class="muted">Deep insights</small></div>
-      <nav class="menu">
-        <a href="dashboard.html" class="menu-item">📊 Dashboard</a>
-        <a href="transaction.html" class="menu-item">💳 Transactions</a>
-        <a href="analytics.html" class="menu-item active">📈 Analytics</a>
-        <a href="budgets.html" class="menu-item">💰 Budgets</a>
-        <a href="setttings.html" class="menu-item">⚙️ Settings</a>
-      </nav>
-      <div class="sidebar-footer">
-        <button id="themeToggle" class="btn small">Toggle Theme</button>
-      </div>
-    </aside>
+<div class="container">
 
-    <main class="main-content">
-      <header class="topbar">
-        <h2>📊 Analytics Dashboard</h2>
+  <aside class="sidebar">
+    <div class="brand-row">
+      <h2>SmartExpense</h2>
+      <small>Personal Finance</small>
+    </div>
+    <nav class="menu">
+      <span class="menu-label">Main</span>
+      <a href="dashboard.html" class="menu-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a href="transaction.html" class="menu-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Transactions
+      </a>
+      <a href="analytics.html" class="menu-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Analytics
+      </a>
+      <a href="budgets.html" class="menu-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Budgets
+      </a>
+      <a href="setttings.html" class="menu-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <button id="themeToggle" class="btn outline small">Toggle Theme</button>
+      <span class="sidebar-version">v1.0.0</span>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h2>Analytics</h2>
+        <p class="topbar-subtitle">Understand your spending patterns</p>
+      </div>
+      <div class="top-right">
         <select id="periodSelect" class="select-styled">
           <option value="week">Last 7 Days</option>
           <option value="month" selected>Last 30 Days</option>
           <option value="year">Last Year</option>
         </select>
-      </header>
+      </div>
+    </header>
 
+    <div class="page-body">
       <div class="stats-row">
-        <div class="stat-card stat-income animate-slide-up">
-          <div class="stat-icon">💰</div>
+        <div class="stat-card fade-up">
+          <div class="stat-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
           <div>
-            <small>Average Daily Spending</small>
-            <h3 id="avgDaily">Rs.0</h3>
-            <span class="trend positive">↑ 12% vs last period</span>
+            <div class="stat-label">Avg. Daily Spend</div>
+            <div class="stat-value">Rs.1,167</div>
+            <span class="stat-trend down">+12% vs last period</span>
           </div>
         </div>
-        <div class="stat-card stat-expense animate-slide-up" style="animation-delay:0.1s">
-          <div class="stat-icon">📈</div>
+        <div class="stat-card fade-up-1">
+          <div class="stat-icon red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
           <div>
-            <small>Highest Expense Day</small>
-            <h3 id="highestDay">Rs.0</h3>
-            <span class="trend muted">Monday, Dec 18</span>
+            <div class="stat-label">Highest Spend Day</div>
+            <div class="stat-value">Rs.5,800</div>
+            <span class="stat-trend flat">Saturday</span>
           </div>
         </div>
-        <div class="stat-card stat-count animate-slide-up" style="animation-delay:0.2s">
-          <div class="stat-icon">🎯</div>
+        <div class="stat-card fade-up-2">
+          <div class="stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
           <div>
-            <small>Savings Rate</small>
-            <h3 id="savingsRate">0%</h3>
-            <span class="trend positive">↑ 5% improvement</span>
+            <div class="stat-label">Savings Rate</div>
+            <div class="stat-value">28%</div>
+            <span class="stat-trend up">+5% improvement</span>
           </div>
         </div>
       </div>
 
       <div class="analytics-grid">
-        <div class="card animate-slide-up" style="animation-delay:0.3s">
+
+        <div class="card fade-up-3">
           <div class="card-header">
-            <h3>📉 Spending Trend</h3>
+            <h3>Spending Trend</h3>
             <div class="legend">
-              <span class="legend-item"><span class="dot income"></span>Income</span>
-              <span class="legend-item"><span class="dot expense"></span>Expenses</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span>Income</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Expenses</span>
             </div>
           </div>
-          <div class="chart-wrapper" style="height:280px">
+          <div class="chart-wrapper" style="height:260px">
             <canvas id="trendChart"></canvas>
           </div>
         </div>
 
-        <div class="card animate-slide-up" style="animation-delay:0.4s">
-          <div class="card-header">
-            <h3>🏷️ Category Breakdown</h3>
-          </div>
-          <div class="chart-wrapper" style="height:280px">
+        <div class="card fade-up-4">
+          <div class="card-header"><h3>Category Breakdown</h3></div>
+          <div class="chart-wrapper" style="height:260px">
             <canvas id="categoryChart"></canvas>
           </div>
         </div>
 
-        <div class="card animate-slide-up" style="animation-delay:0.5s">
-          <div class="card-header">
-            <h3>📅 Day of Week Analysis</h3>
-          </div>
-          <div class="chart-wrapper" style="height:280px">
+        <div class="card fade-up-5">
+          <div class="card-header"><h3>Day of Week</h3></div>
+          <div class="chart-wrapper" style="height:260px">
             <canvas id="weekdayChart"></canvas>
           </div>
         </div>
 
-        <div class="card animate-slide-up" style="animation-delay:0.6s">
-          <h3>🔝 Top Spending Categories</h3>
+        <div class="card fade-up-6">
+          <div class="card-header"><h3>Top Categories</h3></div>
           <div class="category-list">
             <div class="category-item">
               <div class="category-info">
-                <span class="category-icon">🍔</span>
-                <div>
-                  <strong>Food & Dining</strong>
-                  <p class="muted">45 transactions</p>
-                </div>
+                <span class="category-dot" style="background:#f59e0b"></span>
+                <div><strong>Food & Dining</strong><p class="muted">45 transactions</p></div>
               </div>
               <div class="category-amount">
                 <strong>Rs.12,450</strong>
-                <div class="mini-bar"><div class="mini-bar-fill" style="width:85%"></div></div>
+                <div class="mini-bar"><div class="mini-bar-fill" style="width:85%;background:#f59e0b"></div></div>
               </div>
             </div>
             <div class="category-item">
               <div class="category-info">
-                <span class="category-icon">🚗</span>
-                <div>
-                  <strong>Transport</strong>
-                  <p class="muted">28 transactions</p>
-                </div>
+                <span class="category-dot" style="background:#3b82f6"></span>
+                <div><strong>Transport</strong><p class="muted">28 transactions</p></div>
               </div>
               <div class="category-amount">
                 <strong>Rs.8,200</strong>
-                <div class="mini-bar"><div class="mini-bar-fill" style="width:60%"></div></div>
+                <div class="mini-bar"><div class="mini-bar-fill" style="width:60%;background:#3b82f6"></div></div>
               </div>
             </div>
             <div class="category-item">
               <div class="category-info">
-                <span class="category-icon">🛍️</span>
-                <div>
-                  <strong>Shopping</strong>
-                  <p class="muted">32 transactions</p>
-                </div>
+                <span class="category-dot" style="background:#8b5cf6"></span>
+                <div><strong>Shopping</strong><p class="muted">32 transactions</p></div>
               </div>
               <div class="category-amount">
                 <strong>Rs.6,800</strong>
-                <div class="mini-bar"><div class="mini-bar-fill" style="width:45%"></div></div>
+                <div class="mini-bar"><div class="mini-bar-fill" style="width:45%;background:#8b5cf6"></div></div>
               </div>
             </div>
             <div class="category-item">
               <div class="category-info">
-                <span class="category-icon">💡</span>
-                <div>
-                  <strong>Bills & Utilities</strong>
-                  <p class="muted">12 transactions</p>
-                </div>
+                <span class="category-dot" style="background:#10b981"></span>
+                <div><strong>Bills & Utilities</strong><p class="muted">12 transactions</p></div>
               </div>
               <div class="category-amount">
                 <strong>Rs.4,500</strong>
-                <div class="mini-bar"><div class="mini-bar-fill" style="width:30%"></div></div>
+                <div class="mini-bar"><div class="mini-bar-fill" style="width:30%;background:#10b981"></div></div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="card insight-card animate-slide-up" style="animation-delay:0.7s">
-          <h3>💡 Smart Insights</h3>
-          <div class="insight-list">
+        <div class="card" style="grid-column:span 12;animation:fadeUp 0.4s 0.35s ease both;opacity:0">
+          <div class="card-header"><h3>Smart Insights</h3></div>
+          <div class="insight-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
             <div class="insight-item success">
-              <span class="insight-icon">✅</span>
-              <div>
-                <strong>Great job!</strong>
-                <p>You spent 15% less on dining this month</p>
+              <div class="insight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
+              <div><strong>Dining down 15%</strong><p>You spent less on food this month compared to last month.</p></div>
             </div>
             <div class="insight-item warning">
-              <span class="insight-icon">⚠️</span>
-              <div>
-                <strong>Watch out</strong>
-                <p>Shopping expenses increased by 25%</p>
+              <div class="insight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               </div>
+              <div><strong>Shopping up 25%</strong><p>Shopping expenses have increased significantly this period.</p></div>
             </div>
             <div class="insight-item info">
-              <span class="insight-icon">💡</span>
-              <div>
-                <strong>Tip</strong>
-                <p>You could save Rs.2,000 by reducing weekend spending</p>
+              <div class="insight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
               </div>
+              <div><strong>Weekend spending</strong><p>Reducing weekend spending could save you Rs.2,000 per month.</p></div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
-  </div>
 
-  <script src="storage.js"></script>
-  <script src="theme.js"></script>
-  <script>
-    // Sample data for charts
-    const ctx1 = document.getElementById('trendChart').getContext('2d');
-    new Chart(ctx1, {
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="storage.js"></script>
+<script src="theme.js"></script>
+<script>
+  const CHART_DEFAULTS = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 12 }, color: '#64748b' } },
+      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 12 }, color: '#64748b' } }
+    }
+  };
+
+  window.addEventListener('load', () => {
+    new Chart(document.getElementById('trendChart'), {
       type: 'line',
       data: {
-        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-        datasets: [{
-          label: 'Income',
-          data: [25000, 28000, 26000, 30000],
-          borderColor: '#10b981',
-          backgroundColor: 'rgba(16, 185, 129, 0.1)',
-          tension: 0.4
-        }, {
-          label: 'Expenses',
-          data: [18000, 22000, 19000, 21000],
-          borderColor: '#ef4444',
-          backgroundColor: 'rgba(239, 68, 68, 0.1)',
-          tension: 0.4
-        }]
+        labels: ['Week 1','Week 2','Week 3','Week 4'],
+        datasets: [
+          { label:'Income',   data:[25000,28000,26000,30000], borderColor:'#10b981', backgroundColor:'rgba(16,185,129,0.08)', tension:0.4, fill:true, pointRadius:4, pointBackgroundColor:'#10b981' },
+          { label:'Expenses', data:[18000,22000,19000,21000], borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,0.08)',  tension:0.4, fill:true, pointRadius:4, pointBackgroundColor:'#ef4444' }
+        ]
       },
-      options: { responsive: true, maintainAspectRatio: false }
+      options: { ...CHART_DEFAULTS, plugins: { legend: { display: true, position: 'bottom', labels: { boxWidth: 10, font: { size: 12 } } } } }
     });
 
-    const ctx2 = document.getElementById('categoryChart').getContext('2d');
-    new Chart(ctx2, {
+    new Chart(document.getElementById('categoryChart'), {
       type: 'doughnut',
       data: {
-        labels: ['Food', 'Transport', 'Shopping', 'Bills', 'Other'],
-        datasets: [{
-          data: [12450, 8200, 6800, 4500, 3050],
-          backgroundColor: ['#f59e0b', '#06b6d4', '#8b5cf6', '#10b981', '#6b7280']
-        }]
+        labels: ['Food','Transport','Shopping','Bills','Other'],
+        datasets: [{ data:[12450,8200,6800,4500,3050], backgroundColor:['#f59e0b','#3b82f6','#8b5cf6','#10b981','#94a3b8'], borderWidth:0, hoverOffset:6 }]
       },
-      options: { responsive: true, maintainAspectRatio: false }
+      options: { responsive:true, maintainAspectRatio:false, cutout:'68%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ size:12 } } } } }
     });
 
-    const ctx3 = document.getElementById('weekdayChart').getContext('2d');
-    new Chart(ctx3, {
+    new Chart(document.getElementById('weekdayChart'), {
       type: 'bar',
       data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        datasets: [{
-          label: 'Spending',
-          data: [3200, 2800, 3500, 2900, 4200, 5800, 4600],
-          backgroundColor: '#667eea'
-        }]
+        labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+        datasets: [{ label:'Spending', data:[3200,2800,3500,2900,4200,5800,4600], backgroundColor:'rgba(79,70,229,0.15)', borderColor:'#4f46e5', borderWidth:2, borderRadius:6 }]
       },
-      options: { responsive: true, maintainAspectRatio: false }
+      options: CHART_DEFAULTS
     });
-  </script>
+  });
+</script>
 </body>
 </html>

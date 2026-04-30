@@ -1,135 +1,156 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SmartExpense — Dashboard</title>
-
   <link rel="stylesheet" href="main.css" />
   <link rel="stylesheet" href="dashboard.css" />
   <link rel="stylesheet" href="darkmode.css" />
   <link rel="stylesheet" href="chatbot.css" />
-  <!-- Chart.js CDN (defer so it doesn't block parsing) -->
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-  <div class="container">
+<div class="container">
 
-    <aside class="sidebar" aria-label="Main navigation">
-      <div class="brand-row">
-        <h2>SmartExpense</h2>
-        <small class="muted">Control your spending</small>
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="brand-row">
+      <h2>SmartExpense</h2>
+      <small>Personal Finance</small>
+    </div>
+
+    <nav class="menu">
+      <span class="menu-label">Main</span>
+      <a class="menu-item active" href="dashboard.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a class="menu-item" href="transaction.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Transactions
+      </a>
+      <a class="menu-item" href="analytics.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Analytics
+      </a>
+      <a class="menu-item" href="budgets.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Budgets
+      </a>
+      <a class="menu-item" href="setttings.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="themeToggle" class="btn outline small">Toggle Theme</button>
+      <button id="upgradeBtn" class="btn primary small">Upgrade to Pro</button>
+      <span class="sidebar-version">v1.0.0</span>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h2>Dashboard</h2>
+        <p class="topbar-subtitle">Welcome back — here's your overview</p>
       </div>
-
-      <nav class="menu">
-        <a class="menu-item active" href="dashboard.html">📊 Dashboard</a>
-        <a class="menu-item" href="transaction.html">💳 Transactions</a>
-        <a class="menu-item" href="analytics.html">📈 Analytics</a>
-        <a class="menu-item" href="budgets.html">💰 Budgets</a>
-        <a class="menu-item" href="setttings.html">⚙️ Settings</a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <button id="themeToggle" class="btn small">🌙 Toggle Theme</button>
-        <button id="upgradeBtn" class="btn primary small">⭐ Upgrade Pro</button>
-        <div class="footer-info">
-          <small class="muted">v1.0.0 | MIT License</small>
+      <div class="top-right">
+        <button id="exportBtn" class="btn outline small">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export
+        </button>
+        <button id="notifyBtn" class="icon-btn" title="Notifications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        </button>
+        <div class="user-pill">
+          <img src="avatar.png" alt="avatar" class="avatar">
+          <span class="user-name" id="userName">User</span>
         </div>
       </div>
-    </aside>
+    </header>
 
-    <main class="main-content">
+    <div class="page-body">
+      <div class="dashboard-grid">
 
-      <header class="topbar">
-        <div class="topbar-left">
-          <h2>📊 Dashboard</h2>
-          <p class="topbar-subtitle">Welcome back! Here's your financial overview</p>
-        </div>
-        <div class="top-right">
-          <button id="exportBtn" class="btn outline small" title="Export Data">📥 Export</button>
-          <button id="notifyBtn" class="icon-btn" title="Notifications">🔔</button>
-          <div class="user">
-            <img src="avatar.png" alt="avatar" class="avatar">
-            <span id="userName">User</span>
-          </div>
-        </div>
-      </header>
-
-      <section class="dashboard-grid">
-
-        <div class="card card-dark total-balance animate-slide-up">
-          <div class="balance-icon">💰</div>
-          <div>
-            <small>Total Balance</small>
-            <h2 id="totalBalance">Rs.45,250.00</h2>
-            <small id="balanceDelta" class="balance-trend positive">↑ Rs.2,500 from last month</small>
-          </div>
-          <div class="card-actions">
-            <button id="addMoney" class="btn outline white">+ Add Money</button>
+        <div class="card total-balance fade-up">
+          <small>Total Balance</small>
+          <h2 id="totalBalance">Rs.45,250.00</h2>
+          <small id="balanceDelta" class="balance-trend positive">+Rs.2,500 from last month</small>
+          <div class="balance-actions">
+            <button id="addMoney" class="btn white small">+ Add Money</button>
           </div>
         </div>
 
-        <div class="card monthly-budget animate-slide-up" style="animation-delay:0.1s">
-          <div class="card-row">
+        <div class="card monthly-budget fade-up-1">
+          <div class="card-row" style="margin-bottom:0">
             <div>
-              <small>📊 Monthly Budget</small>
-              <h3 id="monthlyBudget">Rs.0 <span class="muted">/ Rs.0</span></h3>
+              <div style="font-size:11px;color:var(--muted);font-weight:500;margin-bottom:4px">Monthly Budget</div>
+              <div style="font-size:18px;font-weight:700;color:var(--text)" id="monthlyBudget">Rs.0 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ Rs.0</span></div>
             </div>
-            <a id="editLimit" href="#" class="link">✏️ Edit</a>
+            <a id="editLimit" href="#" class="link" style="font-size:12px">Edit</a>
           </div>
-
-          <div class="budget-bar">
-            <div id="budgetProgressBar" class="progress"></div>
+          <div class="budget-bar" style="margin-top:16px">
+            <div class="budget-bar-track">
+              <div id="budgetProgressBar" class="budget-bar-fill-inner" style="width:20%;background:var(--green)"></div>
+            </div>
           </div>
-
           <div class="mini-metrics">
-            <div><strong id="savingAmount">Rs.0</strong><small class="muted">Savings</small></div>
-            <div><strong id="investAmount">Rs.0</strong><small class="muted">Invest</small></div>
+            <div>
+              <div class="mini-metric-label">Savings</div>
+              <div class="mini-metric-value" id="savingAmount">Rs.0</div>
+            </div>
+            <div>
+              <div class="mini-metric-label">Invested</div>
+              <div class="mini-metric-value" id="investAmount">Rs.0</div>
+            </div>
           </div>
         </div>
 
-        <div class="card alerts animate-slide-up" style="animation-delay:0.2s">
-          <div class="card-row">
-            <small>🔔 Smart Alerts</small>
-            <small class="badge badge-info">Today</small>
+        <div class="card alerts-card fade-up-2">
+          <div class="card-row" style="margin-bottom:0">
+            <span style="font-size:13px;font-weight:600;color:var(--text)">Smart Alerts</span>
+            <span class="badge badge-neutral">Today</span>
           </div>
           <div id="alertList" class="alerts-list"></div>
         </div>
 
-        <!-- Income vs Expenses -->
-        <div class="card chart income-expenses animate-slide-up" style="animation-delay:0.3s">
-          <div class="card-row">
-            <strong>📈 Income vs Expenses</strong>
-            <select id="timeRange" class="select-styled">
-              <option value="week">This Week</option>
-              <option value="month">This Month</option>
-            </select>
+        <div class="card income-expenses fade-up-3">
+          <div class="card-header">
+            <h3>Income vs Expenses</h3>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div class="legend">
+                <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Income</span>
+                <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Expenses</span>
+              </div>
+              <select id="timeRange" class="select-styled">
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+              </select>
+            </div>
           </div>
-
-          <!-- wrapper with fixed height to avoid stretching -->
-          <div class="chart-wrapper">
+          <div class="chart-wrapper" style="height:240px">
             <canvas id="incomeExpenseChart"></canvas>
           </div>
         </div>
 
-        <div class="card chart spending-split animate-slide-up" style="animation-delay:0.4s">
-          <strong>🎯 Spending Split</strong>
-          <div class="chart-wrapper">
+        <div class="card spending-split fade-up-4">
+          <div class="card-header"><h3>Spending Split</h3></div>
+          <div class="chart-wrapper" style="height:240px">
             <canvas id="spendingPie"></canvas>
           </div>
         </div>
 
-        <div class="card recent-transactions full animate-slide-up" style="animation-delay:0.5s">
-          <div class="card-row">
-            <strong>💳 Recent Transactions</strong>
-            <a href="transaction.html" class="link">View All →</a>
+        <div class="card recent-transactions fade-up-5">
+          <div class="card-header">
+            <h3>Recent Transactions</h3>
+            <a href="transaction.html" class="link">View all</a>
           </div>
           <table class="tx-table">
             <thead>
               <tr>
-                <th>Transaction</th>
+                <th>Description</th>
                 <th>Category</th>
                 <th>Date</th>
                 <th style="text-align:right">Amount</th>
@@ -138,42 +159,33 @@
             <tbody id="recentTransactions"></tbody>
           </table>
         </div>
-        <!-- Chatbot UI -->
-        <div id="chatbot" class="chatbot">
-          <div class="chatbot-header">
-            <div class="chatbot-title">SmartBot</div>
-            <button id="chatbotClose" class="chatbot-close" title="Close">✕</button>
-          </div>
 
-          <div id="chatMessages" class="chatbot-messages" aria-live="polite"></div>
+      </div>
+    </div>
+  </main>
+</div>
 
-          <form id="chatForm" class="chatbot-input" autocomplete="off">
-            <input id="chatInput" type="text" placeholder="Ask me about your expenses..." aria-label="Message">
-            <button type="submit" id="chatSend" class="btn">Send</button>
-          </form>
-        </div>
-
-        <!-- Chat toggle floating button -->
-        <button id="chatToggleBtn" class="chat-toggle" aria-label="Open chat">💬</button>
-
-
-      </section>
-
-    </main>
+<!-- Chatbot -->
+<div id="chatbot" class="chatbot">
+  <div class="chatbot-header">
+    <div class="chatbot-title">SmartBot</div>
+    <button id="chatbotClose" class="chatbot-close" title="Close">&#x2715;</button>
   </div>
+  <div id="chatMessages" class="chatbot-messages" aria-live="polite"></div>
+  <form id="chatForm" class="chatbot-input" autocomplete="off">
+    <input id="chatInput" type="text" placeholder="Ask about your expenses..." aria-label="Message">
+    <button type="submit" id="chatSend" class="btn primary small">Send</button>
+  </form>
+</div>
+<button id="chatToggleBtn" class="chat-toggle" aria-label="Open chat">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+</button>
 
-  <!-- your other scripts (Storage should be present) -->
-  <script src="storage.js"></script>
-  <script src="meter.js"></script>
-  <script src="alerts.js"></script>
-  <script src="theme.js"></script>
-
-  <!-- chatbot & bot stub -->
+<script src="storage.js"></script>
+<script src="meter.js"></script>
+<script src="alters.js"></script>
+<script src="theme.js"></script>
 <script src="bot.js"></script>
-
-
-  <!-- this file contains the clean chart initialization & update logic -->
-  <script src="dashboard.js"></script>
+<script src="dashboard.js"></script>
 </body>
-
 </html>

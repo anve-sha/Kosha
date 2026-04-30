@@ -4,238 +4,219 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SmartExpense — Budgets</title>
-  <link rel="stylesheet" href="main.css" />
-  <link rel="stylesheet" href="dashboard.css" />
-  <link rel="stylesheet" href="darkmode.css" />
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="darkmode.css">
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="brand-row"><h2>SmartExpense</h2><small class="muted">Manage budgets</small></div>
-      <nav class="menu">
-        <a href="dashboard.html" class="menu-item">📊 Dashboard</a>
-        <a href="transaction.html" class="menu-item">💳 Transactions</a>
-        <a href="analytics.html" class="menu-item">📈 Analytics</a>
-        <a href="budgets.html" class="menu-item active">💰 Budgets</a>
-        <a href="setttings.html" class="menu-item">⚙️ Settings</a>
-      </nav>
-      <div class="sidebar-footer">
-        <button id="themeToggle" class="btn small">Toggle Theme</button>
+<div class="container">
+
+  <aside class="sidebar">
+    <div class="brand-row">
+      <h2>SmartExpense</h2>
+      <small>Personal Finance</small>
+    </div>
+    <nav class="menu">
+      <span class="menu-label">Main</span>
+      <a href="dashboard.html" class="menu-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a href="transaction.html" class="menu-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Transactions
+      </a>
+      <a href="analytics.html" class="menu-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Analytics
+      </a>
+      <a href="budgets.html" class="menu-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Budgets
+      </a>
+      <a href="setttings.html" class="menu-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <button id="themeToggle" class="btn outline small">Toggle Theme</button>
+      <span class="sidebar-version">v1.0.0</span>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h2>Budgets</h2>
+        <p class="topbar-subtitle">Track and manage your spending limits</p>
       </div>
-    </aside>
+      <div class="top-right">
+        <button class="btn primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New Budget
+        </button>
+      </div>
+    </header>
 
-    <main class="main-content">
-      <header class="topbar">
-        <h2>💰 Budget Management</h2>
-        <button id="addBudgetBtn" class="btn primary">+ Create Budget</button>
-      </header>
-
+    <div class="page-body">
       <div class="stats-row">
-        <div class="stat-card animate-slide-up">
-          <div class="stat-icon">🎯</div>
+        <div class="stat-card fade-up">
+          <div class="stat-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
           <div>
-            <small>Total Budget</small>
-            <h3>Rs.50,000</h3>
-            <span class="trend muted">Monthly limit</span>
+            <div class="stat-label">Total Budget</div>
+            <div class="stat-value">Rs.50,000</div>
+            <span class="stat-trend flat">Monthly limit</span>
           </div>
         </div>
-        <div class="stat-card animate-slide-up" style="animation-delay:0.1s">
-          <div class="stat-icon">💸</div>
+        <div class="stat-card fade-up-1">
+          <div class="stat-icon red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
           <div>
-            <small>Total Spent</small>
-            <h3>Rs.35,000</h3>
-            <span class="trend warning">70% used</span>
+            <div class="stat-label">Total Spent</div>
+            <div class="stat-value">Rs.35,000</div>
+            <span class="stat-trend down">70% used</span>
           </div>
         </div>
-        <div class="stat-card animate-slide-up" style="animation-delay:0.2s">
-          <div class="stat-icon">💰</div>
+        <div class="stat-card fade-up-2">
+          <div class="stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
           <div>
-            <small>Remaining</small>
-            <h3>Rs.15,000</h3>
-            <span class="trend positive">30% left</span>
+            <div class="stat-label">Remaining</div>
+            <div class="stat-value">Rs.15,000</div>
+            <span class="stat-trend up">30% left</span>
           </div>
         </div>
       </div>
 
-      <div class="card animate-slide-up" style="animation-delay:0.3s">
+      <div class="card fade-up-3" style="margin-bottom:20px">
         <div class="card-header">
-          <h3>📊 Overall Budget Progress</h3>
-          <span class="badge badge-warning">15 days left</span>
+          <h3>Overall Progress</h3>
+          <span class="badge badge-neutral">15 days left</span>
         </div>
         <div class="budget-progress-large">
           <div class="progress-info">
-            <span>Rs.35,000 spent</span>
-            <span>Rs.50,000 budget</span>
+            <span style="font-weight:600;color:var(--text)">Rs.35,000 <span style="font-weight:400;color:var(--muted)">spent</span></span>
+            <span style="color:var(--muted)">of Rs.50,000</span>
           </div>
-          <div class="progress-bar-large">
-            <div class="progress-fill" style="width:70%"></div>
+          <div class="progress-bar-large" style="margin-top:10px">
+            <div class="progress-fill accent" style="width:70%"></div>
           </div>
-          <p class="muted" style="margin-top:8px">You're on track! Keep up the good work.</p>
+          <p class="muted" style="margin-top:10px;font-size:13px">You are on track. Rs.15,000 remaining for the month.</p>
         </div>
       </div>
 
       <div class="budgets-grid">
-        <div class="card budget-card animate-slide-up" style="animation-delay:0.4s">
+
+        <div class="card budget-card fade-up-3">
           <div class="budget-header">
-            <div class="budget-icon food">🍔</div>
-            <div class="budget-title">
-              <h4>Food & Dining</h4>
-              <p class="muted">45 transactions</p>
+            <div class="budget-icon food">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
             </div>
-            <button class="btn-icon">⋮</button>
+            <div class="budget-title"><h4>Food & Dining</h4><p class="muted">45 transactions</p></div>
+            <button class="btn-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
           </div>
-          <div class="budget-amount">
-            <span class="spent">Rs.12,450</span>
-            <span class="limit">/ Rs.15,000</span>
-          </div>
-          <div class="budget-bar-wrapper">
-            <div class="budget-bar-fill success" style="width:83%"></div>
-          </div>
-          <div class="budget-footer">
-            <span class="badge badge-success">On track</span>
-            <span class="remaining">Rs.2,550 left</span>
-          </div>
+          <div class="budget-amount"><span class="spent">Rs.12,450</span><span class="limit">/ Rs.15,000</span></div>
+          <div class="budget-bar-wrapper"><div class="budget-bar-fill green" style="width:83%"></div></div>
+          <div class="budget-footer"><span class="badge badge-success">On track</span><span class="remaining">Rs.2,550 left</span></div>
         </div>
 
-        <div class="card budget-card animate-slide-up" style="animation-delay:0.5s">
+        <div class="card budget-card fade-up-4">
           <div class="budget-header">
-            <div class="budget-icon transport">🚗</div>
-            <div class="budget-title">
-              <h4>Transport</h4>
-              <p class="muted">28 transactions</p>
+            <div class="budget-icon transport">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
             </div>
-            <button class="btn-icon">⋮</button>
+            <div class="budget-title"><h4>Transport</h4><p class="muted">28 transactions</p></div>
+            <button class="btn-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
           </div>
-          <div class="budget-amount">
-            <span class="spent">Rs.8,200</span>
-            <span class="limit">/ Rs.10,000</span>
-          </div>
-          <div class="budget-bar-wrapper">
-            <div class="budget-bar-fill success" style="width:82%"></div>
-          </div>
-          <div class="budget-footer">
-            <span class="badge badge-success">On track</span>
-            <span class="remaining">Rs.1,800 left</span>
-          </div>
+          <div class="budget-amount"><span class="spent">Rs.8,200</span><span class="limit">/ Rs.10,000</span></div>
+          <div class="budget-bar-wrapper"><div class="budget-bar-fill green" style="width:82%"></div></div>
+          <div class="budget-footer"><span class="badge badge-success">On track</span><span class="remaining">Rs.1,800 left</span></div>
         </div>
 
-        <div class="card budget-card animate-slide-up" style="animation-delay:0.6s">
+        <div class="card budget-card fade-up-5">
           <div class="budget-header">
-            <div class="budget-icon shopping">🛍️</div>
-            <div class="budget-title">
-              <h4>Shopping</h4>
-              <p class="muted">32 transactions</p>
+            <div class="budget-icon shopping">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             </div>
-            <button class="btn-icon">⋮</button>
+            <div class="budget-title"><h4>Shopping</h4><p class="muted">32 transactions</p></div>
+            <button class="btn-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
           </div>
-          <div class="budget-amount">
-            <span class="spent">Rs.9,800</span>
-            <span class="limit">/ Rs.10,000</span>
-          </div>
-          <div class="budget-bar-wrapper">
-            <div class="budget-bar-fill warning" style="width:98%"></div>
-          </div>
-          <div class="budget-footer">
-            <span class="badge badge-warning">Almost there</span>
-            <span class="remaining">Rs.200 left</span>
-          </div>
+          <div class="budget-amount"><span class="spent">Rs.9,800</span><span class="limit">/ Rs.10,000</span></div>
+          <div class="budget-bar-wrapper"><div class="budget-bar-fill amber" style="width:98%"></div></div>
+          <div class="budget-footer"><span class="badge badge-warning">Almost there</span><span class="remaining">Rs.200 left</span></div>
         </div>
 
-        <div class="card budget-card animate-slide-up" style="animation-delay:0.7s">
+        <div class="card budget-card fade-up-6">
           <div class="budget-header">
-            <div class="budget-icon bills">💡</div>
-            <div class="budget-title">
-              <h4>Bills & Utilities</h4>
-              <p class="muted">12 transactions</p>
+            <div class="budget-icon bills">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
             </div>
-            <button class="btn-icon">⋮</button>
+            <div class="budget-title"><h4>Bills & Utilities</h4><p class="muted">12 transactions</p></div>
+            <button class="btn-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
           </div>
-          <div class="budget-amount">
-            <span class="spent">Rs.4,550</span>
-            <span class="limit">/ Rs.8,000</span>
-          </div>
-          <div class="budget-bar-wrapper">
-            <div class="budget-bar-fill success" style="width:57%"></div>
-          </div>
-          <div class="budget-footer">
-            <span class="badge badge-success">Great!</span>
-            <span class="remaining">Rs.3,450 left</span>
-          </div>
+          <div class="budget-amount"><span class="spent">Rs.4,550</span><span class="limit">/ Rs.8,000</span></div>
+          <div class="budget-bar-wrapper"><div class="budget-bar-fill green" style="width:57%"></div></div>
+          <div class="budget-footer"><span class="badge badge-success">Under budget</span><span class="remaining">Rs.3,450 left</span></div>
         </div>
 
-        <div class="card budget-card animate-slide-up" style="animation-delay:0.8s">
+        <div class="card budget-card" style="animation:fadeUp 0.4s 0.3s ease both;opacity:0">
           <div class="budget-header">
-            <div class="budget-icon entertainment">🎬</div>
-            <div class="budget-title">
-              <h4>Entertainment</h4>
-              <p class="muted">18 transactions</p>
+            <div class="budget-icon entertainment">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
             </div>
-            <button class="btn-icon">⋮</button>
+            <div class="budget-title"><h4>Entertainment</h4><p class="muted">18 transactions</p></div>
+            <button class="btn-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
           </div>
-          <div class="budget-amount">
-            <span class="spent">Rs.5,200</span>
-            <span class="limit">/ Rs.5,000</span>
-          </div>
-          <div class="budget-bar-wrapper">
-            <div class="budget-bar-fill danger" style="width:104%"></div>
-          </div>
-          <div class="budget-footer">
-            <span class="badge badge-warning">Over budget!</span>
-            <span class="remaining exceeded">Rs.200 over</span>
-          </div>
+          <div class="budget-amount"><span class="spent">Rs.5,200</span><span class="limit">/ Rs.5,000</span></div>
+          <div class="budget-bar-wrapper"><div class="budget-bar-fill red" style="width:100%"></div></div>
+          <div class="budget-footer"><span class="badge badge-danger">Over budget</span><span class="remaining exceeded">Rs.200 over</span></div>
         </div>
 
-        <div class="card budget-card add-budget animate-slide-up" style="animation-delay:0.9s">
+        <div class="add-budget-card" style="animation:fadeUp 0.4s 0.35s ease both;opacity:0">
           <div class="add-budget-content">
-            <div class="add-icon">➕</div>
-            <h4>Create New Budget</h4>
-            <p class="muted">Set limits for a new category</p>
-            <button class="btn outline">Add Budget</button>
+            <div class="add-budget-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <h4>New Budget</h4>
+            <p>Set a limit for a category</p>
           </div>
         </div>
+
       </div>
 
-      <div class="card animate-slide-up" style="animation-delay:1s">
-        <h3>📈 Budget History</h3>
+      <div class="card" style="margin-top:20px;animation:fadeUp 0.4s 0.4s ease both;opacity:0">
+        <div class="card-header"><h3>Budget History</h3></div>
         <table class="tx-table">
           <thead>
-            <tr>
-              <th>Month</th>
-              <th>Budget</th>
-              <th>Spent</th>
-              <th>Saved</th>
-              <th>Status</th>
-            </tr>
+            <tr><th>Month</th><th>Budget</th><th>Spent</th><th>Saved</th><th>Status</th></tr>
           </thead>
           <tbody>
-            <tr class="tx-row">
-              <td><strong>December 2024</strong></td>
-              <td>Rs.50,000</td>
-              <td class="amount negative">Rs.35,000</td>
-              <td class="amount positive">Rs.15,000</td>
-              <td><span class="badge badge-success">On track</span></td>
-            </tr>
-            <tr class="tx-row" style="animation-delay:0.05s">
-              <td><strong>November 2024</strong></td>
-              <td>Rs.50,000</td>
-              <td class="amount negative">Rs.48,200</td>
-              <td class="amount positive">Rs.1,800</td>
-              <td><span class="badge badge-warning">Close</span></td>
-            </tr>
-            <tr class="tx-row" style="animation-delay:0.1s">
-              <td><strong>October 2024</strong></td>
-              <td>Rs.45,000</td>
-              <td class="amount negative">Rs.42,500</td>
-              <td class="amount positive">Rs.2,500</td>
-              <td><span class="badge badge-success">Success</span></td>
-            </tr>
+            <tr class="tx-row"><td><strong>December 2024</strong></td><td>Rs.50,000</td><td class="amount negative">Rs.35,000</td><td class="amount positive">Rs.15,000</td><td><span class="badge badge-success">On track</span></td></tr>
+            <tr class="tx-row" style="animation-delay:0.05s"><td><strong>November 2024</strong></td><td>Rs.50,000</td><td class="amount negative">Rs.48,200</td><td class="amount positive">Rs.1,800</td><td><span class="badge badge-warning">Close</span></td></tr>
+            <tr class="tx-row" style="animation-delay:0.1s"><td><strong>October 2024</strong></td><td>Rs.45,000</td><td class="amount negative">Rs.42,500</td><td class="amount positive">Rs.2,500</td><td><span class="badge badge-success">Success</span></td></tr>
           </tbody>
         </table>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
+</div>
 
-  <script src="storage.js"></script>
-  <script src="theme.js"></script>
+<script src="storage.js"></script>
+<script src="theme.js"></script>
 </body>
 </html>
