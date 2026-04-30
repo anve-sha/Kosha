@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SmartExpense — Transactions</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="darkmode.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar"> <!-- same menu as dashboard for simplicity -->
+      <div class="brand-row"><h2>SmartExpense</h2><small class="muted">Track transactions</small></div>
+      <nav class="menu">
+        <a href="dashboard.html" class="menu-item">📊 Dashboard</a>
+        <a href="transaction.html" class="menu-item active">💳 Transactions</a>
+        <a href="analytics.html" class="menu-item">📈 Analytics</a>
+        <a href="budgets.html" class="menu-item">💰 Budgets</a>
+        <a href="setttings.html" class="menu-item">⚙️ Settings</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <h2>💳 All Transactions</h2>
+        <div class="top-right">
+          <input id="txFilter" type="search" placeholder="🔍 Filter transactions...">
+          <button id="addTxBtn" class="btn primary">+ Add Transaction</button>
+        </div>
+      </header>
+
+      <div class="stats-row">
+        <div class="stat-card stat-income animate-slide-up">
+          <div class="stat-icon">📈</div>
+          <div>
+            <small>Total Income</small>
+            <h3 id="totalIncome">Rs.0.00</h3>
+          </div>
+        </div>
+        <div class="stat-card stat-expense animate-slide-up" style="animation-delay:0.1s">
+          <div class="stat-icon">📉</div>
+          <div>
+            <small>Total Expenses</small>
+            <h3 id="totalExpense">Rs.0.00</h3>
+          </div>
+        </div>
+        <div class="stat-card stat-count animate-slide-up" style="animation-delay:0.2s">
+          <div class="stat-icon">🧾</div>
+          <div>
+            <small>Total Transactions</small>
+            <h3 id="txCount">0</h3>
+          </div>
+        </div>
+      </div>
+
+      <section class="page-card animate-slide-up" style="animation-delay:0.3s">
+        <div class="card-header">
+          <h3>Transaction History</h3>
+          <div class="filter-group">
+            <select id="categoryFilter" class="select-styled">
+              <option value="all">All Categories</option>
+              <option value="food">🍔 Food</option>
+              <option value="transport">🚗 Transport</option>
+              <option value="shopping">🛍️ Shopping</option>
+              <option value="bills">💡 Bills</option>
+              <option value="other">📦 Other</option>
+            </select>
+          </div>
+        </div>
+        <table class="tx-table">
+          <thead><tr><th>Transaction</th><th>Category</th><th>Date</th><th style="text-align:right">Amount</th></tr></thead>
+          <tbody id="allTransactions"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="storage.js"></script>
+  <script src="theme.js"></script>
+  <script>
+    const allTx = document.getElementById('allTransactions');
+    const txs = Storage.getTransactions();
+    
+    // Calculate stats
+    let totalIncome = 0, totalExpense = 0;
+    if (txs && txs.length) {
+      txs.forEach(t => {
+        if (t.amount > 0) totalIncome += t.amount;
+        else totalExpense += Math.abs(t.amount);
+      });
+    }
+    
+    document.getElementById('totalIncome').textContent = `Rs.${totalIncome.toFixed(2)}`;
+    document.getElementById('totalExpense').textContent = `Rs.${totalExpense.toFixed(2)}`;
+    document.getElementById('txCount').textContent = txs ? txs.length : 0;
+    
+    // Populate table with animations
+    if (txs && txs.length) {
+      txs.forEach((t, i) => {
+        const tr = document.createElement('tr');
+        tr.className = 'tx-row';
+        tr.style.animationDelay = `${0.4 + i * 0.05}s`;
+        const categoryEmoji = {'food':'🍔','transport':'🚗','shopping':'🛍️','bills':'💡'}[t.category] || '📦';
+        tr.innerHTML = `<td><strong>${t.title}</strong></td><td><span class="category-badge">${categoryEmoji} ${t.category}</span></td><td class="muted">${t.date}</td><td style="text-align:right"><span class="amount ${t.amount<0?'negative':'positive'}">${t.amount<0? '-' : '+'}Rs.${Math.abs(t.amount).toFixed(2)}</span></td>`;
+        allTx.appendChild(tr);
+      });
+    } else {
+      allTx.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:40px" class="muted">📭 No transactions yet</td></tr>';
+    }
+    
+    // Filter functionality
+    document.getElementById('categoryFilter').addEventListener('change', (e) => {
+      const filter = e.target.value;
+      const rows = allTx.querySelectorAll('tr');
+      rows.forEach(row => {
+        if (filter === 'all' || row.textContent.toLowerCase().includes(filter)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

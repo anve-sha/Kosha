@@ -1,0 +1,166 @@
+body.dark {
+  --bg: #0d1117;
+  --card: #161b22;
+  --text: #e6edf3;
+  --muted: #8b96a5;
+  --accent: #58a6ff;
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+body.dark .card {
+  background: var(--card);
+  color: var(--text);
+  border-color: #2a313b;
+}
+
+body.dark .muted {
+  color: var(--muted);
+}
+
+body.dark .btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+body.dark .btn.outline {
+  border-color: #2a313b;
+  color: var(--text);
+}
+
+body.dark .btn.outline:hover {
+  background: #1b222c;
+}
+
+body.dark input,
+body.dark select,
+body.dark .input-styled,
+body.dark .select-styled {
+  background: #0f141a;
+  color: var(--text);
+  border: 1px solid #2a313b;
+}
+
+body.dark .sidebar {
+  background: var(--card);
+  border-color: #2a313b;
+}
+
+body.dark .sidebar,
+body.dark .sidebar * {
+  color: var(--text) !important;
+}
+
+body.dark .menu-item {
+  color: var(--muted) !important;
+}
+
+body.dark .menu-item.active,
+body.dark .menu-item:hover {
+  background: #1b222c;
+  color: var(--text) !important;
+}
+
+body.dark .main-content {
+  background: var(--bg);
+}
+
+body.dark .stat-card,
+body.dark .account-item {
+  background: var(--card);
+  border-color: #2a313b;
+}
+
+body.dark .account-item:hover {
+  background: #1b222c;
+}
+
+body.dark .account-icon {
+  background: #0f141a;
+}
+
+body.dark .theme-btn {
+  background: var(--card);
+  border-color: #2a313b;
+  color: var(--text);
+}
+
+body.dark .theme-btn.active {
+  background: #1b3a52;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+body.dark .toggle-slider {
+  background: #2a313b;
+}
+
+body.dark .section-header {
+  border-color: #2a313b;
+}
+
+body.dark .tx-table thead th {
+  border-color: #2a313b;
+}
+
+body.dark .tx-table tbody td {
+  border-color: #1b222c;
+}
+
+body.dark .tx-table tbody tr:hover {
+  background: #1b222c;
+}
+
+body.dark .category-badge {
+  background: #1b222c;
+  color: var(--text);
+}
+
+body.dark .badge-info {
+  background: #1b3a52;
+  color: #58a6ff;
+}
+
+body.dark .badge-success {
+  background: #1b3a2e;
+  color: #3fb950;
+}
+
+body.dark .badge-warning {
+  background: #3a2e1b;
+  color: #d29922;
+}
+
+/* Budget & Analytics dark mode */
+body.dark .budget-card,
+body.dark .category-item,
+body.dark .insight-item {
+  background: var(--card);
+  border-color: #2a313b;
+}
+
+body.dark .budget-progress-large {
+  background: #0f141a;
+}
+
+body.dark .add-budget {
+  border-color: #2a313b;
+}
+
+body.dark .add-budget:hover {
+  background: #1b222c;
+}
+
+body.dark .insight-card {
+  background: linear-gradient(135deg, #1b222c, #161b22);
+}
+
+body.dark .budget-bar-wrapper,
+body.dark .mini-bar {
+  background: #2a313b;
+}
+
+body.dark .progress-bar-large {
+  background: #2a313b;
+}
